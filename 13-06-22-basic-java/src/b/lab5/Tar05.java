@@ -16,7 +16,9 @@ public class Tar05 {
 	 */
 	public static void main(String[] args) {
 		int r = (int) (Math.random() * 10_001); // 0 - 10,000
+//		r = 12321;
 		// r = Math.abs(r);
+		int c = r;
 		System.out.println("r = " + r);
 
 		int numberOfDigits = 1;
@@ -39,6 +41,12 @@ public class Tar05 {
 		System.out.println("left digit is " + r);
 		System.out.println("sum of digits is " + sum);
 		System.out.println("reveresed number is " + rev);
+		
+		if(rev==c) {
+			System.out.println("palindrom");
+		}else {
+			System.out.println("NOT palindrom");
+		}
 
 	}
 
