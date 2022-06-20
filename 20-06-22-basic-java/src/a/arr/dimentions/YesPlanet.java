@@ -13,7 +13,6 @@ public class YesPlanet {
 		init();
 		print();
 		admit(1, 1);
-		admit(5, 10);
 		print();
 	}
 
@@ -40,7 +39,7 @@ public class YesPlanet {
 		for (int i = 0; i < mat.length; i++) {
 			System.out.println(Arrays.toString(mat[i]));
 		}
-		System.out.println("========================");
+		System.out.println("==============================");
 	}
 
 }
