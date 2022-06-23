@@ -1,6 +1,6 @@
 package a;
 
-public class Demo2 {
+public class Demo2Scope {
 
 	public static void main(String[] args) {
 

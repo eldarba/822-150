@@ -55,11 +55,46 @@ public class Demo4FlowControlIf {
 			String message = x > 50 ? "x is big" : "x is small";
 			System.out.println(message);
 		}
-		
+
 		// switch
+		{
+			int key = 2;
+			switch (key) {
+			case 17:
+				System.out.println("key is 17");
+				break;
+			case 20:
+				System.out.println("key is 20");
+				break;
+			case 10:
+				System.out.println("key is 10");
+				break;
+			default:
+				System.out.println("some other  value");
+			}
+		}
+
 		// while loop
+		System.out.println("loop");
+		int counter = 0;
+		while (counter < 3) {
+			System.out.println("Hello");
+			counter++;
+		}
+
+		counter = 0;
 		// do-while loop
+		System.out.println("loop");
+		do {
+			System.out.println("Hello");
+			counter++;
+		} while (counter < 3);
+
 		// for loop
+		System.out.println("loop");
+		for (int count = 17; count <= 21; count++) {
+			System.out.println("Hello: " + count);
+		}
 
 	}
 
