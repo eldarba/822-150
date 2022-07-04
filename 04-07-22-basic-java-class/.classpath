@@ -6,5 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/04-07-22-other-project"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
