@@ -1,21 +1,17 @@
+// package declaration:
 package b;
 
+// class declaration:
 public class Person {
 
 	// class variable - static
 	private static int counter;
-	// constant
+	// constant (static + final)
 	public static final int MAX_AGE = 120;
-
-	public void setAge(int age) {
-		if(age <= MAX_AGE) {
-			this.age = age;
-		}
-	}
 	
-	// class method - static
-	public static int getCounter() {
-		return counter;
+	 // class initializer - runs on class load
+	static {
+		System.out.println("class loaded");
 	}
 
 	// instance variables
@@ -23,8 +19,9 @@ public class Person {
 	private String name;
 	private int age;
 
-	{ // initializer - runs before CTOR
+	{ // instance initializer - runs before CTOR
 		counter++;
+		System.out.println("instance created");
 	}
 
 	// CTOR 1
@@ -39,6 +36,18 @@ public class Person {
 		this.id = id;
 	}
 
+	// class method - static
+	public static int getCounter() {
+		return counter;
+	}
+
+	// instance methods
+	public void setAge(int age) {
+		if (age <= MAX_AGE) {
+			this.age = age;
+		}
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -50,6 +59,5 @@ public class Person {
 	public int getAge() {
 		return age;
 	}
-
 
 }
