@@ -22,7 +22,7 @@ public class Line { // this class extends Object
 
 	public void print() {
 		for (int i = 0; i < length; i++) {
-			System.out.print("*");
+			System.out.print(" * ");
 		}
 		System.out.println();
 	}

@@ -12,6 +12,11 @@ public class Test {
 		Pixel px2 = new Pixel(5, "yellow");
 		Pixel px3 = new Pixel("red");
 		Pixel px4 = new Pixel();
+		
+		String str = pt1.toString();
+		System.out.println(str);
+		
+		System.out.println(pt2);
 
 	}
 
