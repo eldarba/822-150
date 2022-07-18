@@ -29,9 +29,11 @@ public class Bus {
 
 	public Passenger removePassenger(int passengerId) {
 		for (int i = 0; i < pasengers.length; i++) {
-			Passenger curr = pasengers[i]; // get a reference to the passenger in the current index
+			// get a reference to the passenger in the current index
+			Passenger curr = pasengers[i];
 			if (curr != null && curr.getId() == passengerId) {
-
+				pasengers[i] = null; // remove the passenger
+				return curr; // return the removed passenger
 			}
 		}
 		return null;
