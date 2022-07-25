@@ -14,6 +14,7 @@ public class TestBank {
 		bank.addClient(new Client(101, "aaa", 500));
 		bank.addClient(new Client(102, "bbb", 200));
 		bank.addClient(new Client(103, "ccc", 300));
+		
 
 		int clientId = 101;
 		Client client = bank.getClient(clientId);
