@@ -88,6 +88,53 @@ public class Client {
 		}
 	}
 
+	public void deposit(float amount) {
+		float commission = amount * this.commissionRate;
+		this.balance += amount;
+		this.balance -= commission;
+		// log the operation
+		Log logDeposit = new Log(this.id, "deposit", amount);
+		Log logCommission = new Log(this.id, "commission", -commission);
+		logger.log(logDeposit);
+		logger.log(logCommission);
+		//
+	}
+
+	public void withdraw(float amount) {
+		float commission = amount * this.commissionRate;
+		this.balance -= amount;
+		this.balance -= commission;
+		// log the operation
+		Log logWithdraw = new Log(this.id, "withdraw", amount);
+		Log logCommission = new Log(this.id, "commission", -commission);
+		logger.log(logWithdraw);
+		logger.log(logCommission);
+		//
+	}
+
+	public void autoUpdateAcounts() {
+		for (Account account : accounts) {
+			if (account != null) {
+				float intrest = account.getBalance() * this.interestRate;
+				account.setBalance(account.getBalance() + intrest);
+				// log the operation
+				Log log = new Log(this.id, "autoUpdateAcounts for interest due", intrest);
+				logger.log(log);
+				//
+			}
+		}
+	}
+
+	public float getFortune() {
+		float fortune = this.balance;
+		for (Account account : accounts) {
+			if (account != null) {
+				fortune += account.getBalance();
+			}
+		}
+		return fortune;
+	}
+
 	public String getName() {
 		return name;
 	}
