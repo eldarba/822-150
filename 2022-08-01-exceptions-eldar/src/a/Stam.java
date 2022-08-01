@@ -6,5 +6,6 @@ public class Stam {
 	static {
 		System.out.println("Stam loaded");
 	}
+	
 
 }
