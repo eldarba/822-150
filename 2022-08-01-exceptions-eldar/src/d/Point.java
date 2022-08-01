@@ -30,11 +30,11 @@ public class Point {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(int x) throws  PointXYException{
 		if (x >= MIN && x <= MAX) {
 			this.x = x;
 		} else {
-			throw new RuntimeException("ilegal x value");
+			throw new PointXYException("ilegal x value");
 		}
 	}
 
@@ -42,11 +42,11 @@ public class Point {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(int y) throws  PointXYException{
 		if (y >= MIN && y <= MAX) {
 			this.y = y;
 		} else {
-			throw new RuntimeException("ilegal y value");
+			throw new PointXYException("ilegal y value");
 		}
 	}
 
