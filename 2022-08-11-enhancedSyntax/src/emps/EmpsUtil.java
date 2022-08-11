@@ -21,4 +21,21 @@ public class EmpsUtil {
 		return avg;
 	}
 
+	// this method will accept Collection<Employee>
+	// this method will accept Collection<Person>
+	// this method will accept Collection<Object>
+	public static void addEmployee(Collection<? super Employee> collection) {
+		collection.add(new Employee());
+		collection.add(new Manager());
+		collection.add(new Director());
+		// collection.add(new Person());
+	}
+
+	// a method that accepts any collection and prints the elements
+	public void print(Collection<?> col) {
+		for (Object element : col) {
+			System.out.println(element);
+		}
+	}
+
 }
