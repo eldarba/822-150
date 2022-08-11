@@ -1,5 +1,7 @@
 package emps;
 
 public class Person {
-String name;
+	
+	static int c = 1;
+	String name = "Person-" + c++;
 }
