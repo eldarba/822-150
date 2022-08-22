@@ -41,6 +41,18 @@ public class Classroom {
 	public void setStudents(Student[] students) {
 		this.students = students;
 	}
+	
+	public double getAvg() {
+		double sum = 0;
+		int c = 0;
+		for (Student student : students) {
+			if(student!=null) {
+				sum+=student.getAverage();
+				c++;
+			}
+		}
+		return sum/c;
+	}
 
 	@Override
 	public String toString() {
