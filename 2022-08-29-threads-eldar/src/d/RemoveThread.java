@@ -10,7 +10,6 @@ public class RemoveThread extends Thread {
 
 	@Override
 	public void run() {
-		
 		listController.removeLastElement();
 	}
 

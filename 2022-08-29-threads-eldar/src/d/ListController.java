@@ -8,6 +8,21 @@ public class ListController {
 	private List<Integer> list = new ArrayList<>();
 	private Object key = new Object();
 
+	public void print() {
+		System.out.println(Thread.currentThread().getName() + ": printing elements:");
+		synchronized (key) { // synchronized block
+			for (Integer x : list) {
+				System.out.println(Thread.currentThread().getName() + ": " + x);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	// non synchronized method
 	public void add(int val) {
 		list.add(val);
 	}
@@ -31,20 +46,6 @@ public class ListController {
 			e.printStackTrace();
 		}
 		list.remove(list.size() - 1);
-	}
-
-	public void print() {
-		System.out.println(Thread.currentThread().getName() + ": printing elements:");
-		synchronized (key) { // synchronized block
-			for (Integer x : list) {
-				System.out.println(Thread.currentThread().getName() + ": " + x);
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 
 }
