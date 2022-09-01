@@ -57,6 +57,7 @@ public class DictionarySystem {
 		System.out.print("enter definition: ");
 		String definition = scanner.nextLine();
 		dictionary.addEntry(entry, definition);
+		System.out.println("entry added successfully");
 	}
 
 	private void printMenu() {
