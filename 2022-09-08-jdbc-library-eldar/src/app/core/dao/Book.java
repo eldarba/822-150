@@ -1,6 +1,6 @@
 package app.core.dao;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
@@ -9,12 +9,12 @@ public class Book {
 	private String title;
 	private String author;
 	private double price;
-	private Date publication;
+	private LocalDate publication;
 	
 	public Book() {
 	}
 
-	public Book(int isbn, String title, String author, double price, Date publication) {
+	public Book(int isbn, String title, String author, double price, LocalDate publication) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -55,11 +55,11 @@ public class Book {
 		this.price = price;
 	}
 
-	public Date getPublication() {
+	public LocalDate getPublication() {
 		return publication;
 	}
 
-	public void setPublication(Date publication) {
+	public void setPublication(LocalDate publication) {
 		this.publication = publication;
 	}
 
