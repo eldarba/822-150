@@ -12,6 +12,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		Program program = new Program();
+		program.schedualer.startMonitoringTasks();
 		program.start();
 	}
 
@@ -51,7 +52,7 @@ public class Program {
 
 	private void doAddTask() {
 		Task task = new Task();
-		System.out.println("enter description");
+		System.out.print("enter description: ");
 		task.setDescription(sc.nextLine());
 		System.out.print("enter deadline time today: hh:mm:ss ");
 		LocalTime time = LocalTime.parse(sc.nextLine());
@@ -62,7 +63,7 @@ public class Program {
 
 	public void displayMenu() {
 		System.out.println();
-		System.out.println("MENU ==================================");
+		System.out.println("MENU ================= MONITORING " + (this.schedualer.isMonitoringActive()?"ACTIVE": "NOT ACTIVE"));
 		System.out.println("start monitring ................ start");
 		System.out.println("stop monitring ................. stop");
 		System.out.println("add task ....................... add");
