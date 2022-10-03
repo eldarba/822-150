@@ -1,7 +1,20 @@
 package app.core.beans;
 
-public interface Car {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+public abstract class Car {
 	
-	void drive();
+	@Autowired
+	@Qualifier("carNumber")
+	private int number;
+	
+	abstract public void drive();
+
+	public int getNumber() {
+		return number;
+	}
+	
+	
 
 }

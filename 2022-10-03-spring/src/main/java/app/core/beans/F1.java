@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class F1 implements Car {
+public class F1 extends Car {
 	
 	@Autowired
 	@Qualifier("v12Engine")
