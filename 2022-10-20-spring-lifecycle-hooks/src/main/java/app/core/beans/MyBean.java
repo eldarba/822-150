@@ -4,12 +4,13 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("herzel")
-public class MyBean implements BeanNameAware, InitializingBean {
+public class MyBean implements BeanNameAware, InitializingBean, DisposableBean {
 	
 	private String myBeanName;
 	@Value("${home.address}")
@@ -45,6 +46,11 @@ public class MyBean implements BeanNameAware, InitializingBean {
 		System.out.println("\tInitializingBean: " + this.myBeanName + " is ready");
 		System.out.println("\tInitializingBean: " + this.homeAddress);
 		
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("\tDisposableBean: " + this.myBeanName + " is destroid");
 	}
 	
 	
