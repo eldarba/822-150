@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import app.core.annotations.MyAopAnnotation;
 
 @Component
-@MyAopAnnotation
 public class TraficService {
 
-	//@Autowired // inject this bean
+	// @Autowired // inject this bean
 	private Random random = new Random();
 
+	@MyAopAnnotation
 	public void m1() {
 		System.out.println("m1");
 	}
@@ -21,7 +21,7 @@ public class TraficService {
 	public void m2() {
 		System.out.println("m2");
 
-	}
+	} 
 
 	private String[] updates = {
 
