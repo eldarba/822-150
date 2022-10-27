@@ -14,6 +14,15 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class MyAspect {
 
+	// annotated class:
+	// @Before("@target(app.core.annotations.MyAopAnnotation)")
+
+	// annotated method:
+	@Before("@annotation(app.core.annotations.MyAopAnnotation)")
+	public void m() {
+		System.out.println(">>>!!!!!!!!!!!!!! annotated method");
+	}
+
 	// Advises - intercept target method calls and add the advice algorithm
 	// 1. before
 	@Before("trafic()")
@@ -41,16 +50,18 @@ public class MyAspect {
 
 	// 5. around
 	@Around(trafic)
-	public Object around(ProceedingJoinPoint pjp) {
+	public Object around(ProceedingJoinPoint pjp) throws Throwable {
 		System.out.println(">>> around before");
-		
+
 		try {
 			Object obj = pjp.proceed();
-			return "ma she ba li";
+			// return "ma she ba li";
+			return obj;
 		} catch (Throwable e) {
 //			e.printStackTrace();
-			return "Gam ma she ba li cha cha cha";
-		}finally {
+			return "Just keep going (proxy) - " + e.getMessage();
+			// throw e;
+		} finally {
 			System.out.println(">>> around after");
 		}
 	}

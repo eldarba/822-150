@@ -15,6 +15,9 @@ public class App1 {
 			System.out.println();
 			System.out.println();
 			System.out.println(msg);
+			
+			service.m1();
+			service.m2();
 		} catch (Exception e) {
 			System.out.println();
 			// System.out.println(e.getMessage());
