@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.Check;
 
@@ -24,9 +24,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "coupons") // used in native queries
 @Check(constraints = "price >= 5")
 public class Coupon {
+//	@GeneratedValue(generator = "aaa")
+//	@TableGenerator(initialValue = 101, name = "aaa")
 	@Id
-	@GeneratedValue(generator = "gen")
-	@TableGenerator(initialValue = 101, name = "gen")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(unique = true)
 	private String title;
