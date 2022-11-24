@@ -56,8 +56,15 @@ public class EmployeeController {
 	}
 
 	@PutMapping
-	public Employee update(Employee employee) {
+	public Employee update(@RequestBody Employee employee) {
 		return service.update(employee);
+	}
+
+	@PutMapping("/all")
+	public void updateAll(@RequestBody List<Employee> emps) {
+		for (Employee employee : emps) {
+			this.service.update(employee);
+		}
 	}
 
 	@DeleteMapping
