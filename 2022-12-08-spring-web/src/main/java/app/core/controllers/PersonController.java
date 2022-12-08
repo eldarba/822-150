@@ -6,8 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +31,8 @@ public class PersonController {
 		return person;
 	}
 
-	@GetMapping
-	public Person getPerson(int id) {
+	@GetMapping("/{id}")
+	public Person getPerson(@PathVariable int id) {
 		return persons.stream()
 
 				.filter(element -> element.getId() == id)
@@ -37,6 +40,27 @@ public class PersonController {
 				.findAny() // terminal operation that return an Optional<Person>
 
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "person not found"));
+	}
+
+	@GetMapping
+	public List<Person> getAll() {
+		return persons;
+	}
+
+	@PutMapping
+	public Person update(@RequestBody Person person) {
+		Person personFromSystem = getPerson(person.getId());
+		personFromSystem.setName(person.getName());
+		personFromSystem.setAge(person.getAge());
+		return personFromSystem;
+	}
+
+	@DeleteMapping
+	public void deletePerson(int id) {
+		if (!persons.remove(new Person(id, null, 0))) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "person not found");
+		}
+
 	}
 
 	@PostConstruct
