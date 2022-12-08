@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -56,7 +57,7 @@ public class PersonController {
 	}
 
 	@DeleteMapping
-	public void deletePerson(int id) {
+	public void deletePerson(@RequestParam int id) {
 		if (!persons.remove(new Person(id, null, 0))) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "person not found");
 		}
