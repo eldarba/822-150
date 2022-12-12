@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>abc</title>
+</head>
+<body>
+    <button onclick="greet()">greet</button>
+
+    <script>
+        function greet() {
+            console.log("fetch data from server");
+            let url = "http://localhost:8080/api/greet";
+            // an object for http request/response
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                let resp = this.response;
+                console.log(resp);
+            }
+              
+            xhttp.open("GET", url);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
