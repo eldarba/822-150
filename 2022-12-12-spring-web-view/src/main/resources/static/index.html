@@ -7,19 +7,52 @@
 <body>
     <button onclick="greet()">greet</button>
 
+    <br>
+    <div id="resp"></div>
+
+    <hr>
+    <input id="a" type="number" placeholder="enter first number">
+    <input id="b" type="number" placeholder="enter second number">
+    <br>
+    <button onclick="sum()">add</button>
+    <div id="sum"></div>
+
     <script>
+        function sum() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                // this line will run last - after the resposponse arives
+                document.getElementById("sum").innerHTML = this.response; 
+            };
+
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let url = "http://localhost:8080/api/add?a=" + a + "&b=" + b;
+            console.log(url);
+            xhttp.open("GET", url);
+            xhttp.send();
+        }
+
+
         function greet() {
-            console.log("fetch data from server");
+            // set the request url
             let url = "http://localhost:8080/api/greet";
             // an object for http request/response
             let xhttp = new XMLHttpRequest();
+            // set what to do when the response is ready
             xhttp.onload = function () {
                 let resp = this.response;
                 console.log(resp);
+                // get a reference to an element from the page
+                let element = window.document.getElementById("resp");
+                // print element to see fields
+                console.dir(element);
+                // set the innerHTML field of the element
+                element.innerHTML = resp;
             }
               
-            xhttp.open("GET", url);
-            xhttp.send();
+            xhttp.open("GET", url); // define the request
+            xhttp.send(); // send the request
         }
     </script>
 </body>
