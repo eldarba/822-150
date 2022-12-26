@@ -1,5 +1,6 @@
 package app.core.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,6 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(exclude = { "examples" })
 
@@ -32,5 +31,31 @@ public class Entry {
 
 	@OneToMany(mappedBy = "entry", cascade = CascadeType.ALL)
 	private List<Example> examples;
+
+	public Entry(int id, String word, String definition, List<Example> examples) {
+		super();
+		this.id = id;
+		this.word = word;
+		this.definition = definition;
+		this.examples = examples;
+		for (Example example : this.examples) {
+			example.setEntry(this); // bind the example to the entry
+		}
+	}
+
+	public void setExamples(List<Example> examples) {
+		this.examples = examples;
+		for (Example example : this.examples) {
+			example.setEntry(this); // bind the example to the entry
+		}
+	}
+
+	public void addExample(Example example) {
+		if (this.examples == null) {
+			this.examples = new ArrayList<>();
+		}
+		example.setEntry(this);
+		this.examples.add(example); // bind the example to the entry
+	}
 
 }
