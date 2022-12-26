@@ -38,8 +38,11 @@ public class Entry {
 		this.word = word;
 		this.definition = definition;
 		this.examples = examples;
-		for (Example example : this.examples) {
-			example.setEntry(this); // bind the example to the entry
+		if (examples != null) {
+
+			for (Example example : this.examples) {
+				example.setEntry(this); // bind the example to the entry
+			}
 		}
 	}
 
