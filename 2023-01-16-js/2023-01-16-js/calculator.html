@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="a">
+    <input type="text" id="b">
+    <button onclick="sum()">+</button>
+    <button onclick="sum2(a, b, res)">+</button>
+    <div id="res"></div>
+
+    <script>
+        function sum() {
+            let a = +document.getElementById("a").value;
+            let b = +document.getElementById("b").value;
+            let sum = a + b;
+            let divRes = document.getElementById("res").innerHTML = sum;
+        }
+
+        function sum2(in1, in2, theDiv) {
+            let sum = +in1.value + +in2.value;
+            theDiv.innerHTML = sum;
+        }
+        
+    </script>
+
+</body>
+
+</html>

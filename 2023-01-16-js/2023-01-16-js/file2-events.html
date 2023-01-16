@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" 
+    onchange="printValue(this, x)" 
+    onfocus="this.style.backgroundColor='red'"
+        onblur="this.style.backgroundColor=null" 
+        onmouseover="this.style.backgroundColor='blue'"
+        onmouseleave="this.style.backgroundColor=null"
+        >
+    <input type="text" oninput="printValue(this, x)">
+    <br>
+    <button onclick="clearFields()">clear</button>
+    <div id="x"></div>
+
+    <script>
+
+        function printValue(element, x) {
+            // console.log(element.value);
+            x.innerHTML = element.value;
+        }
+
+        function clearFields() {
+            let arr = document.getElementsByTagName("input");
+            arr[0].value = null;
+            arr[1].value = null;
+        }
+
+    </script>
+</body>
+
+</html>
