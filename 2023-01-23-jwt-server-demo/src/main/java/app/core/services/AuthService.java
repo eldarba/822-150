@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import app.core.auth.JwtUtil;
 import app.core.auth.UserCredentials;
 import app.core.entities.User;
+import app.core.repos.UserRepo;
 
 @Service
 public class AuthService {
@@ -13,10 +14,29 @@ public class AuthService {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	public String login(UserCredentials credentials) {
-		User user = new User(0, credentials.getEmail(), credentials.getPassword(), null, null, null, null);
-		String token = jwtUtil.generateToken(user);
-		return token;
+	@Autowired
+	private UserRepo userRepo;
+
+	public String register(User user) {
+		// business logic comes here - check user values
+		this.userRepo.save(user);
+		return this.jwtUtil.generateToken(user);
+	}
+
+	public String login(UserCredentials credentials) throws Exception {
+
+		// find if there is a user with this email
+		User user = userRepo.findByEmail(credentials.getEmail())
+				.orElseThrow(() -> new Exception("user not found. email: " + credentials.getEmail()));
+
+		// if user found check the password
+		if (credentials.getPassword().equals(user.getPassword())) {
+			String token = jwtUtil.generateToken(user);
+			return token;
+		} else {
+			throw new Exception("wrong email or password");
+		}
+
 	}
 
 }
