@@ -18,7 +18,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtDemo {
 
 	public static void main(String[] args) {
-
 		// we need to create a Key Object from a secret combination
 
 		// step 1 - secret
