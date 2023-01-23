@@ -8,19 +8,21 @@ public class JwtDemo {
 	public static void main(String[] args) {
 		System.out.println("JWT");
 
-		// create a JWT builder
+		// 1. create a JWT builder
 		JwtBuilder jwtBuilder = Jwts.builder();
 
+		// 2. create the token
 		String token = jwtBuilder
 
-				.claim("name", "Eldar")
+				.claim("name", "Eldar") // add a claim to the payload
 
-				.claim("address", "Tel Aviv")
+				.claim("address", "Tel Aviv") // add a claim to the payload
 
-				.claim("phone", "0002154")
+				.claim("phone", "0002154") // add a claim to the payload
 
-				.compact();
+				.compact(); // convert to a string JWS
 
+		// 3. print the token
 		System.out.println(token);
 
 	}
