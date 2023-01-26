@@ -33,8 +33,10 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		// 1. check the request
+
 		// get the Authorization header with the schem and JWT
 		String auth = httpRequest.getHeader("Authorization");
+
 		if (auth == null) {
 			httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 			httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "you need to login");
