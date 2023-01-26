@@ -52,6 +52,9 @@ public class AuthenticationFilter implements Filter {
 			try {
 				User user = jwtUtil.extractUser(jwt);
 				System.out.println(user);
+				httpRequest.setAttribute("user", user); // put the user on the so it is available for controller
+				// pass the request on
+				chain.doFilter(httpRequest, response);
 			} catch (Exception e) {
 				httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 				httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "you need to login: " + e.getMessage());
@@ -59,8 +62,6 @@ public class AuthenticationFilter implements Filter {
 
 		}
 
-		// pass the request on
-		chain.doFilter(httpRequest, response);
 		System.out.println("=========> filter end");
 	}
 

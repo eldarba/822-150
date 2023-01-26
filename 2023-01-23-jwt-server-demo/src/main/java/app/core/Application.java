@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import app.core.auth.JwtUtil;
+import app.core.filters.AdminAuthorizatioFilter;
 import app.core.filters.AuthenticationFilter;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -25,6 +26,14 @@ public class Application {
 		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new AuthenticationFilter(jwtUtil));
 		regBean.addUrlPatterns("/api/*");
+		return regBean;
+	}
+
+	@Bean
+	FilterRegistrationBean<AdminAuthorizatioFilter> adminAuthFilter() {
+		FilterRegistrationBean<AdminAuthorizatioFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new AdminAuthorizatioFilter());
+		regBean.addUrlPatterns("/api/admin/*");
 		return regBean;
 	}
 
