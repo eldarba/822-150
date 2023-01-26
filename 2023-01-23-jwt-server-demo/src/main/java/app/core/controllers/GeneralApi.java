@@ -16,7 +16,7 @@ public class GeneralApi {
 	@GetMapping(path = "/greet", headers = { HttpHeaders.AUTHORIZATION })
 	public String greet(HttpServletRequest req) {
 		User user = (User) req.getAttribute("user");
-		return "Hello: " + user.getFirstName() + " " + user.getLastName();
+		return "Hello: " + user.getFirstName() + " " + user.getLastName() + " you are " + user.getRole();
 	}
 
 }
