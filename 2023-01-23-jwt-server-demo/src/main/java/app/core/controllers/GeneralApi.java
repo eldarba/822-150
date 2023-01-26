@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class GeneralApi {
 
-	@GetMapping(path = "/greet", headers = HttpHeaders.AUTHORIZATION)
+	@GetMapping(path = "/greet", headers = { HttpHeaders.AUTHORIZATION })
 	public String greet() {
 		return "Hello";
 	}

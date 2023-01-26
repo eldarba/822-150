@@ -30,8 +30,10 @@ public class AuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("=========> filter start");
+		// to get access to http methods we need to cast
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
+
 		// 1. check the request
 
 		// get the Authorization header with the schem and JWT
@@ -42,13 +44,18 @@ public class AuthenticationFilter implements Filter {
 			httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "you need to login");
 		} else {
 			StringTokenizer tokenizer = new StringTokenizer(auth);
-			String schema = tokenizer.nextToken();
-			String jwt = tokenizer.nextToken();
+			String schema = tokenizer.nextToken(); // first token is the schema
+			String jwt = tokenizer.nextToken(); // second token is the jwt
 			System.out.println(schema);
 			System.out.println(jwt);
 			// convert the jwt to a User object
-			User user = jwtUtil.extractUser(jwt);
-			System.out.println(user);
+			try {
+				User user = jwtUtil.extractUser(jwt);
+				System.out.println(user);
+			} catch (Exception e) {
+				httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
+				httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "you need to login: " + e.getMessage());
+			}
 
 		}
 
