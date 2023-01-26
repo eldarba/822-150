@@ -2,8 +2,11 @@ package app.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
+import app.core.auth.JwtUtil;
+import app.core.filters.AuthenticationFilter;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -15,6 +18,14 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	FilterRegistrationBean<AuthenticationFilter> authenticationFilter(JwtUtil jwtUtil) {
+		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new AuthenticationFilter(jwtUtil));
+		regBean.addUrlPatterns("/api/*");
+		return regBean;
 	}
 
 	// for swagger authorization
