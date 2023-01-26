@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import app.core.auth.JwtUtil;
 import app.core.filters.AdminAuthorizatioFilter;
 import app.core.filters.AuthenticationFilter;
+import app.core.filters.CompanyAuthorizatioFilter;
+import app.core.filters.CustomerAuthorizatioFilter;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -34,6 +36,22 @@ public class Application {
 		FilterRegistrationBean<AdminAuthorizatioFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new AdminAuthorizatioFilter());
 		regBean.addUrlPatterns("/api/admin/*");
+		return regBean;
+	}
+
+	@Bean
+	FilterRegistrationBean<CompanyAuthorizatioFilter> companyAuthFilter() {
+		FilterRegistrationBean<CompanyAuthorizatioFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new CompanyAuthorizatioFilter());
+		regBean.addUrlPatterns("/api/company/*");
+		return regBean;
+	}
+
+	@Bean
+	FilterRegistrationBean<CustomerAuthorizatioFilter> customerAuthFilter() {
+		FilterRegistrationBean<CustomerAuthorizatioFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new CustomerAuthorizatioFilter());
+		regBean.addUrlPatterns("/api/customer/*");
 		return regBean;
 	}
 
