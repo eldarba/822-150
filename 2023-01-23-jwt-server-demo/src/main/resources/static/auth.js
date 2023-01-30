@@ -6,12 +6,15 @@ function register(email, password, firstName, lastName, userName, role) {
   let xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
     if (this.status == 200) {
-      console.log(this.response);
       // save token in the browser memory
       sessionStorage.setItem("token", this.response);
       document.getElementById("mode").innerHTML = "Logged In";
+      document.getElementById("errorMsg").innerHTML = null;
     } else {
-      alert("register failed");
+      let errorAsJson = this.response;
+      let error = JSON.parse(errorAsJson);
+      document.getElementById("mode").innerHTML = null;
+      document.getElementById("errorMsg").innerHTML = error.message;
     }
   };
   let url = "http://localhost:8080/register";
