@@ -21,7 +21,11 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public String register(@RequestBody User user) {
-		return this.authService.register(user);
+		try {
+			return this.authService.register(user);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
 
 	@PostMapping("/login")

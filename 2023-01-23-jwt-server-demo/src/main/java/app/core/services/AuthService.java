@@ -17,10 +17,14 @@ public class AuthService {
 	@Autowired
 	private UserRepo userRepo;
 
-	public String register(User user) {
+	public String register(User user) throws Exception {
 		// business logic comes here - check user values
-		this.userRepo.save(user);
-		return this.jwtUtil.generateToken(user);
+		if (!this.userRepo.existsByEmail(user.getEmail())) {
+			this.userRepo.save(user);
+			return this.jwtUtil.generateToken(user);
+		} else {
+			throw new Exception("register failed - email already exists: " + user.getEmail());
+		}
 	}
 
 	public String login(UserCredentials credentials) throws Exception {
