@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <!-- Register -->
+    <fieldset>
+      <legend>Register</legend>
+      <input id="email" type="text" placeholder="Email" />
+      <input id="password" type="text" placeholder="Password" />
+      <input id="firstName" type="text" placeholder="First Name" />
+      <input id="lastName" type="text" placeholder="Last Name" />
+      <input id="userName" type="text" placeholder="User Name" />
+      <select name="role" id="theRole">
+        <option value="ADMIN">Admin</option>
+        <option value="COMPANY">Company</option>
+        <option value="CUSTOMER">Customer</option>
+      </select>
+      <button
+        onclick="register(email.value, password.value, firstName.value, lastName.value, userName.value, theRole.value)"
+      >
+        Register
+      </button>
+    </fieldset>
+
+    <script src="auth.js"></script>
+  </body>
+</html>
