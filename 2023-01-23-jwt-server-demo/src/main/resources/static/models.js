@@ -9,3 +9,10 @@ class User {
     this.role = role;
   }
 }
+
+class UserCredentials {
+  constructor(email, password) {
+    this.email = email;
+    this.password = password;
+  }
+}

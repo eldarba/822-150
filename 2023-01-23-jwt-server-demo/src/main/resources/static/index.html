@@ -30,9 +30,21 @@
         Register
       </button>
     </fieldset>
+    
+    <fieldset>
+      <legend>Login</legend>
+      <input id="emailLI" type="text" placeholder="Email" />
+      <input id="passwordLI" type="text" placeholder="Password" />
+      <button onclick="login(emailLI.value, passwordLI.value)">Login</button>
+      <button onclick="logout()">Logout</button>
+    </fieldset>
 
+    
+
+    <p id="successMsg"></p>
     <p id="errorMsg"></p>
 
+    <script src="utils.js"></script>
     <script src="models.js"></script>
     <script src="auth.js"></script>
   </body>
