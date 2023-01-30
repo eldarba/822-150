@@ -34,12 +34,21 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+		// 0. check for pre-flight request
+		if (httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
+			// if we are here the client sent a preflight request and we pass it on
+			System.out.println("filter cought a preflight request and passed it on");
+			chain.doFilter(httpRequest, httpResponse);
+			return;
+		}
+
 		// 1. check the request
 
 		// get the Authorization header with the schem and JWT
 		String auth = httpRequest.getHeader("Authorization");
 
 		if (auth == null) {
+			httpResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://127.0.0.1:5500");
 			httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 			httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "you need to login");
 		} else {

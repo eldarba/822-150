@@ -1,3 +1,4 @@
+// ================== REGISTER
 function register(email, password, firstName, lastName, userName, role) {
   // create a User object here
   let user = new User(0, email, password, firstName, lastName, userName, role);
@@ -21,6 +22,7 @@ function register(email, password, firstName, lastName, userName, role) {
   xhttp.send(userAsJson);
 }
 
+// ================== LOGIN
 function login(email, password) {
   let userCredentials = new UserCredentials(email, password);
   let credentialsAsJson = JSON.stringify(userCredentials);
@@ -40,6 +42,7 @@ function login(email, password) {
   xhttp.send(credentialsAsJson);
 }
 
+// ================== LOGOUT
 function logout() {
   sessionStorage.removeItem("token");
   document.getElementById("mode").innerHTML = "Logged OUT";
