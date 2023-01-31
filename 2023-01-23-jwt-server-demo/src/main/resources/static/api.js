@@ -11,9 +11,6 @@ function callGreet() {
 
   xhttp.open("GET", url);
   // add the token to the request
-  xhttp.setRequestHeader(
-    "Authorization",
-    "Bearer " + sessionStorage.getItem("token")
-  );
+  xhttp.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("token"));
   xhttp.send();
 }
