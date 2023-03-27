@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 @RestController
 public class ControllerA {
 	
@@ -24,6 +26,7 @@ public class ControllerA {
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	
+	@HystrixCommand(fallbackMethod = "handleAFallback")
 	@GetMapping("/service/a")
 	public String handleA() {
 //		// use the method below to get the base address of an instance of service-b
@@ -37,6 +40,10 @@ public class ControllerA {
 		
 		String responseFromB = rt.getForObject("http://service-b/service/b", String.class);
 		return "Service A: " + responseFromB;
+	}
+	
+	public String handleAFallback(Throwable t) {
+		return "service a fallback message: can't call service b: " + t;
 	}
 	
 	// this method get a name of a service and return a base address load balanced
