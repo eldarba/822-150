@@ -26,7 +26,7 @@ public class ControllerA {
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	
-	@HystrixCommand(fallbackMethod = "handleAFallback")
+	@HystrixCommand(fallbackMethod = "handleAFallback", commandKey = "ControllerA.handleA")
 	@GetMapping("/service/a")
 	public String handleA() {
 //		// use the method below to get the base address of an instance of service-b
