@@ -29,7 +29,11 @@ public class Calculator {
 	}
 
 	public void div(double value) {
-		result /= value;
+		if(value==0) {
+			destroy();
+		}else {
+			result /= value;
+		}
 	}
 
 	public void clear() {
@@ -38,6 +42,10 @@ public class Calculator {
 
 	public double getResult() {
 		return result;
+	}
+	
+	private void destroy() {
+		System.out.println("Boom");
 	}
 
 }
