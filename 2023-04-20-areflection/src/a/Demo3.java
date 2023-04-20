@@ -26,7 +26,9 @@ public class Demo3 {
 
 			// invoke a private method
 			Method destroyMethod = clazz.getDeclaredMethod("destroy");
+			// make the private method accessible
 			destroyMethod.setAccessible(true);
+			// invoke the private method
 			destroyMethod.invoke(calc);
 
 		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
