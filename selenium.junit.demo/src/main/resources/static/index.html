@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldar's Website</title>
+</head>
+
+<body>
+
+    <input id="in-1" type="text" placeholder="enter title">
+    <input type="text" placeholder="enter name">
+    <input type="text" placeholder="enter email">
+
+    <button id="bt-title" onclick="changeTitle()">Click</button>
+
+    <hr>
+    <select name="" id="colors">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+    <hr>
+    <input id="movies" type="checkbox"> movies
+    <br>
+    <input id="tv" type="checkbox"> TV
+    <br>
+    <input id="sports" type="checkbox"> sports
+    <br>
+
+    <script>
+        function changeTitle() {
+            // const newTitle = "Now is " + new Date().toTimeString();
+            const newTitle = document.getElementById("in-1").value;
+            document.title = newTitle;
+        }
+    </script>
+</body>
+
+</html>
